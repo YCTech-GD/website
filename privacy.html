@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Privacy Policy — Y&C Tech Global Development</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --yc-dark: #060D1A; --yc-navy: #0A1628; --yc-blue: #1B4FD8;
+  --yc-cyan: #38BDF8; --yc-silver: #94A3B8; --yc-light: #E2E8F0;
+  --yc-white: #F8FAFC; --transition: cubic-bezier(0.23, 1, 0.32, 1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Exo 2',sans-serif;background:var(--yc-dark);color:var(--yc-light);overflow-x:hidden;line-height:1.7;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--yc-dark);}
+::-webkit-scrollbar-thumb{background:var(--yc-blue);border-radius:3px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(6,13,26,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(56,189,248,0.1);}
+.nav-logo img{height:40px;object-fit:contain;}
+.nav-right{display:flex;align-items:center;gap:1.5rem;}
+.nav-back{font-family:'Orbitron',monospace;font-size:0.68rem;font-weight:600;letter-spacing:0.15em;color:var(--yc-silver);text-decoration:none;text-transform:uppercase;transition:color 0.3s;display:flex;align-items:center;gap:0.5rem;}
+.nav-back:hover{color:var(--yc-cyan);}
+.lang-toggle{display:flex;align-items:center;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);border-radius:100px;overflow:hidden;}
+.lang-btn{font-family:'Space Mono',monospace;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;padding:0.4rem 0.9rem;border:none;background:transparent;color:var(--yc-silver);cursor:pointer;transition:all 0.2s;text-transform:uppercase;}
+.lang-btn.active{background:var(--yc-blue);color:white;}
+
+/* HERO */
+.hero{padding:9rem 2rem 4rem;text-align:center;background:linear-gradient(180deg,var(--yc-dark) 0%,var(--yc-navy) 100%);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(27,79,216,0.15) 0%,transparent 70%);}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(27,79,216,0.12);border:1px solid rgba(56,189,248,0.3);border-radius:100px;padding:0.35rem 1rem;font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--yc-cyan);letter-spacing:0.1em;margin-bottom:1.5rem;}
+.hero-badge span{width:5px;height:5px;background:var(--yc-cyan);border-radius:50%;animation:pulse 2s infinite;}
+.hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.8rem,5vw,3.5rem);font-weight:900;color:var(--yc-white);margin-bottom:1rem;position:relative;z-index:1;}
+.hero-meta{font-size:0.85rem;color:var(--yc-silver);font-weight:300;letter-spacing:0.05em;position:relative;z-index:1;}
+.hero-meta strong{color:var(--yc-cyan);}
+
+/* CONTENT */
+.content{max-width:860px;margin:0 auto;padding:4rem 2rem 6rem;}
+
+.toc{background:rgba(27,79,216,0.06);border:1px solid rgba(56,189,248,0.12);border-radius:12px;padding:2rem;margin-bottom:3rem;}
+.toc h2{font-family:'Orbitron',monospace;font-size:0.85rem;font-weight:700;color:var(--yc-cyan);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.2rem;}
+.toc ol{padding-left:1.2rem;display:flex;flex-direction:column;gap:0.5rem;}
+.toc li a{font-size:0.88rem;color:var(--yc-silver);text-decoration:none;transition:color 0.2s;font-weight:300;}
+.toc li a:hover{color:var(--yc-cyan);}
+
+.policy-section{margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(56,189,248,0.06);}
+.policy-section:last-child{border-bottom:none;}
+
+.section-num{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--yc-cyan);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.5rem;}
+.policy-section h2{font-family:'Orbitron',monospace;font-size:1.15rem;font-weight:700;color:var(--yc-white);margin-bottom:1.2rem;}
+.policy-section h3{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:600;color:var(--yc-light);margin:1.5rem 0 0.8rem;}
+.policy-section p{font-size:0.95rem;color:var(--yc-silver);margin-bottom:1rem;font-weight:300;}
+.policy-section p strong{color:var(--yc-light);font-weight:600;}
+.policy-section ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1rem;}
+.policy-section ul li{display:flex;gap:0.8rem;font-size:0.92rem;color:var(--yc-silver);font-weight:300;}
+.policy-section ul li::before{content:'›';color:var(--yc-cyan);font-size:1rem;flex-shrink:0;margin-top:1px;}
+.policy-section ul li strong{color:var(--yc-light);font-weight:600;}
+
+.highlight-box{background:rgba(27,79,216,0.07);border:1px solid rgba(56,189,248,0.15);border-left:3px solid var(--yc-cyan);border-radius:0 8px 8px 0;padding:1.2rem 1.5rem;margin:1.5rem 0;}
+.highlight-box p{margin:0;font-size:0.9rem;}
+
+.contact-box{background:rgba(56,189,248,0.04);border:1px solid rgba(56,189,248,0.12);border-radius:12px;padding:1.5rem 2rem;margin-top:1.5rem;}
+.contact-box p{margin:0;font-size:0.9rem;}
+.contact-box a{color:var(--yc-cyan);text-decoration:none;}
+.contact-box a:hover{text-decoration:underline;}
+
+/* FOOTER */
+footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:2.5rem 2rem;text-align:center;}
+.footer-inner{max-width:860px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.footer-logo img{height:32px;object-fit:contain;}
+.footer-text{font-size:0.75rem;color:#334155;font-weight:300;}
+.footer-text a{color:var(--yc-cyan);text-decoration:none;}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+
+@media(max-width:600px){
+  nav{padding:0.8rem 1rem;}
+  .nav-back span{display:none;}
+  .content{padding:3rem 1.2rem 5rem;}
+  .hero{padding:8rem 1.2rem 3rem;}
+  .toc{padding:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><img src="images/logo_empresa.png" alt="Y&C Tech"/></div>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      <span data-i18n="back">Back to home</span>
+    </a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+      <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge"><span></span> Y&C Tech Global Development</div>
+  <h1 data-i18n="page_title">Privacy Policy</h1>
+  <p class="hero-meta"><span data-i18n="effective">Effective date:</span> <strong>March 13, 2026</strong> &nbsp;·&nbsp; <span data-i18n="app_name">Application: recognICE</span></p>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h2 data-i18n="toc_title">Table of Contents</h2>
+    <ol>
+      <li><a href="#s1" data-i18n="toc_1">Introduction</a></li>
+      <li><a href="#s2" data-i18n="toc_2">Information We Collect</a></li>
+      <li><a href="#s3" data-i18n="toc_3">How We Use Your Information</a></li>
+      <li><a href="#s4" data-i18n="toc_4">Third-Party Services</a></li>
+      <li><a href="#s5" data-i18n="toc_5">Data Storage & Security</a></li>
+      <li><a href="#s6" data-i18n="toc_6">Your Rights</a></li>
+      <li><a href="#s7" data-i18n="toc_7">Children's Privacy</a></li>
+      <li><a href="#s8" data-i18n="toc_8">App Permissions</a></li>
+      <li><a href="#s9" data-i18n="toc_9">Changes to This Policy</a></li>
+      <li><a href="#s10" data-i18n="toc_10">Contact Us</a></li>
+      <li><a href="#s11" data-i18n="toc_11">Jurisdiction & Applicable Law</a></li>
+    </ol>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="policy-section" id="s1">
+    <div class="section-num">01</div>
+    <h2 data-i18n="s1_title">Introduction</h2>
+    <p data-i18n="s1_p1">This Privacy Policy describes how <strong>Y&C Tech Global Development</strong> ("the Company", "we", "us" or "our") collects, uses, stores and protects information from users who access and use the recognICE mobile application, available for Android and iOS devices.</p>
+    <p data-i18n="s1_p2">By downloading, installing or using the Application, you agree to the terms described in this Privacy Policy. If you do not agree with any of the terms set forth herein, please do not use the Application.</p>
+    <div class="highlight-box"><p data-i18n="s1_highlight">recognICE is a community safety tool. We are committed to collecting only the minimum data necessary to provide our services, and we will never sell or commercialize your personal information.</p></div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="policy-section" id="s2">
+    <div class="section-num">02</div>
+    <h2 data-i18n="s2_title">Information We Collect</h2>
+
+    <h3 data-i18n="s2_h1">2.1 Location Data</h3>
+    <p data-i18n="s2_p1">The Application collects geographic location data (latitude and longitude) from the user's device for the following purposes:</p>
+    <ul>
+      <li data-i18n="s2_l1"><strong>Map display:</strong> To show your position on the real-time map.</li>
+      <li data-i18n="s2_l2"><strong>Proximity alerts:</strong> To detect ICE operations within 150 meters of your location and send immediate notifications.</li>
+      <li data-i18n="s2_l3"><strong>Route planning:</strong> To trace routes and detect ICE activity along your path.</li>
+      <li data-i18n="s2_l4"><strong>Background monitoring:</strong> The app requests always-on location access to send alerts even when the app is closed.</li>
+    </ul>
+
+    <h3 data-i18n="s2_h2">2.2 User-Generated Content</h3>
+    <p data-i18n="s2_p2">Users may voluntarily report ICE operation locations. This information includes:</p>
+    <ul>
+      <li data-i18n="s2_l5">Geographic coordinates of the reported operation.</li>
+      <li data-i18n="s2_l6">Optional text description provided by the user.</li>
+      <li data-i18n="s2_l7">Timestamp (date and time) of the report.</li>
+    </ul>
+    <p data-i18n="s2_p3">This information is stored in our cloud database and is visible to all users of the Application. Reports are automatically deleted 12 hours after creation.</p>
+
+    <h3 data-i18n="s2_h3">2.3 Anonymous User Identifier</h3>
+    <p data-i18n="s2_p4">The Application uses anonymous authentication provided by Firebase Authentication (Google LLC). A unique anonymous identifier (UID) is generated for each device. This identifier is <strong>not linked</strong> to any personally identifiable information such as name, email address, phone number or other personal data.</p>
+
+    <h3 data-i18n="s2_h4">2.4 Technical Data</h3>
+    <p data-i18n="s2_p5">The Application may automatically collect certain technical data necessary for its operation, including device type and operating system, installed application version, and error logs and performance data.</p>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="policy-section" id="s3">
+    <div class="section-num">03</div>
+    <h2 data-i18n="s3_title">How We Use Your Information</h2>
+    <p data-i18n="s3_intro">The information collected is used exclusively for the following purposes:</p>
+    <ul>
+      <li data-i18n="s3_l1">Providing the core features of the Application, including the real-time map and proximity alerts.</li>
+      <li data-i18n="s3_l2">Sending push notifications when ICE activity is detected near the user.</li>
+      <li data-i18n="s3_l3">Sharing anonymized report information with other Application users.</li>
+      <li data-i18n="s3_l4">Improving the performance and functionality of the Application.</li>
+      <li data-i18n="s3_l5">Ensuring security and preventing fraudulent or abusive use of the Application.</li>
+    </ul>
+    <h3 data-i18n="s3_h1">We do NOT use collected information to:</h3>
+    <ul>
+      <li data-i18n="s3_l6">Sell, rent or commercialize personal data to third parties.</li>
+      <li data-i18n="s3_l7">Serve targeted or personalized advertising.</li>
+      <li data-i18n="s3_l8">Create identifiable user profiles.</li>
+      <li data-i18n="s3_l9">Any purpose other than those expressly stated in this Policy.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="policy-section" id="s4">
+    <div class="section-num">04</div>
+    <h2 data-i18n="s4_title">Third-Party Services</h2>
+
+    <h3>4.1 Firebase (Google LLC)</h3>
+    <p data-i18n="s4_p1">We use Firebase, a Google LLC service, for cloud storage and real-time synchronization of ICE activity reports (Firebase Firestore), and anonymous user authentication (Firebase Authentication). Use of Firebase is subject to Google's Privacy Policy at <a href="https://policies.google.com/privacy" target="_blank" style="color:var(--yc-cyan);">policies.google.com/privacy</a>.</p>
+
+    <h3>4.2 OpenStreetMap & OSRM</h3>
+    <p data-i18n="s4_p2">The Application uses OpenStreetMap for map visualization and the OSRM service for route calculation. These services may receive geographic coordinates to process route requests. Their use is subject to their respective policies.</p>
+
+    <h3>4.3 Nominatim</h3>
+    <p data-i18n="s4_p3">The Application uses the Nominatim geocoding service from OpenStreetMap for place searches. Search queries are sent to Nominatim servers for processing.</p>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="policy-section" id="s5">
+    <div class="section-num">05</div>
+    <h2 data-i18n="s5_title">Data Storage & Security</h2>
+    <p data-i18n="s5_p1">Data stored in our database is protected by the security measures provided by Firebase/Google Cloud, including encryption in transit (TLS/HTTPS) and at rest.</p>
+    <p data-i18n="s5_p2">ICE activity reports are automatically deleted after 12 hours. We do not store historical location data from users.</p>
+    <div class="highlight-box"><p data-i18n="s5_highlight">Despite the security measures implemented, no electronic transmission or storage system is 100% secure. We cannot guarantee the absolute security of information transmitted through the Application.</p></div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="policy-section" id="s6">
+    <div class="section-num">06</div>
+    <h2 data-i18n="s6_title">Your Rights</h2>
+    <p data-i18n="s6_intro">In accordance with applicable data protection laws, users have the following rights:</p>
+    <ul>
+      <li data-i18n="s6_l1"><strong>Access:</strong> Request information about data collected associated with your device.</li>
+      <li data-i18n="s6_l2"><strong>Deletion:</strong> Request deletion of data associated with your anonymous identifier.</li>
+      <li data-i18n="s6_l3"><strong>Permission revocation:</strong> Revoke location permissions at any time through device settings. Note that this may affect the Application's functionality.</li>
+    </ul>
+    <p data-i18n="s6_p1">To exercise any of these rights, please contact us through the means indicated in Section 10 of this document.</p>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="policy-section" id="s7">
+    <div class="section-num">07</div>
+    <h2 data-i18n="s7_title">Children's Privacy</h2>
+    <p data-i18n="s7_p1">The Application is not directed at children under 13 years of age. We do not knowingly collect information from children under 13. If you are a parent or guardian and become aware that your minor child has provided personal information, please contact us so we can take the necessary steps.</p>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="policy-section" id="s8">
+    <div class="section-num">08</div>
+    <h2 data-i18n="s8_title">App Permissions</h2>
+
+    <h3>Android</h3>
+    <ul>
+      <li data-i18n="s8_a1"><strong>ACCESS_FINE_LOCATION & ACCESS_COARSE_LOCATION:</strong> To obtain the user's location.</li>
+      <li data-i18n="s8_a2"><strong>ACCESS_BACKGROUND_LOCATION:</strong> To monitor location in the background and send alerts when the app is closed.</li>
+      <li data-i18n="s8_a3"><strong>POST_NOTIFICATIONS:</strong> To send alert notifications to the user.</li>
+      <li data-i18n="s8_a4"><strong>INTERNET:</strong> To communicate with Firebase servers and mapping services.</li>
+      <li data-i18n="s8_a5"><strong>FOREGROUND_SERVICE:</strong> To keep the background monitoring service active.</li>
+      <li data-i18n="s8_a6"><strong>RECEIVE_BOOT_COMPLETED:</strong> To restart the monitoring service when the device is turned on.</li>
+    </ul>
+
+    <h3>iOS</h3>
+    <ul>
+      <li data-i18n="s8_i1"><strong>NSLocationWhenInUseUsageDescription:</strong> Location while the app is in use.</li>
+      <li data-i18n="s8_i2"><strong>NSLocationAlwaysAndWhenInUseUsageDescription:</strong> Background location for continuous alerts.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 9 -->
+  <div class="policy-section" id="s9">
+    <div class="section-num">09</div>
+    <h2 data-i18n="s9_title">Changes to This Policy</h2>
+    <p data-i18n="s9_p1">We reserve the right to update this Privacy Policy at any time. Changes will take effect immediately upon publication in the Application or on our website. We recommend reviewing this Policy periodically to stay informed about how we protect your information.</p>
+    <p data-i18n="s9_p2">The date of the last update will always be indicated at the top of this document.</p>
+  </div>
+
+  <!-- SECTION 10 -->
+  <div class="policy-section" id="s10">
+    <div class="section-num">10</div>
+    <h2 data-i18n="s10_title">Contact Us</h2>
+    <p data-i18n="s10_p1">If you have questions, concerns or requests related to this Privacy Policy or the processing of your personal data, you may contact us through the following means:</p>
+    <div class="contact-box">
+      <p>📧 <strong data-i18n="s10_email_label">Email:</strong> <a href="mailto:yaguar.technology@gmail.com">yaguar.technology@gmail.com</a></p>
+      <p style="margin-top:0.6rem;">📍 <strong data-i18n="s10_addr_label">Address:</strong> <span data-i18n="s10_addr">599 Cedar Lane, Ap 1A, Teaneck, NJ 07666, United States</span></p>
+      <p style="margin-top:0.6rem;">🏢 <strong data-i18n="s10_company_label">Company:</strong> Y&C Tech Global Development</p>
+      <p style="margin-top:0.6rem;">👤 <strong data-i18n="s10_ceos_label">Directors:</strong> Ivan Contreras & Mauricio Soto</p>
+    </div>
+  </div>
+
+  <!-- SECTION 11 -->
+  <div class="policy-section" id="s11">
+    <div class="section-num">11</div>
+    <h2 data-i18n="s11_title">Jurisdiction & Applicable Law</h2>
+    <p data-i18n="s11_p1">This Privacy Policy is governed by the laws applicable in the jurisdiction where the developing company operates. For users located in the United States, we comply with the applicable provisions of the California Consumer Privacy Act (CCPA) and other applicable state and federal privacy laws.</p>
+    <p data-i18n="s11_p2">For users located in the European Economic Area (EEA), we process data in accordance with the General Data Protection Regulation (GDPR).</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><img src="images/logo_empresa.png" alt="Y&C Tech"/></div>
+    <div class="footer-text">© 2026 Y&C Tech Global Development. <span data-i18n="footer_rights">All rights reserved.</span><br/><a href="index.html" data-i18n="back">Back to home</a></div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  en: {
+    back:'Back to home', page_title:'Privacy Policy',
+    effective:'Effective date:', app_name:'Application: recognICE',
+    toc_title:'Table of Contents',
+    toc_1:'Introduction', toc_2:'Information We Collect', toc_3:'How We Use Your Information',
+    toc_4:'Third-Party Services', toc_5:'Data Storage & Security', toc_6:'Your Rights',
+    toc_7:"Children's Privacy", toc_8:'App Permissions', toc_9:'Changes to This Policy',
+    toc_10:'Contact Us', toc_11:'Jurisdiction & Applicable Law',
+    s1_title:'Introduction',
+    s1_p1:'This Privacy Policy describes how <strong>Y&C Tech Global Development</strong> ("the Company", "we", "us" or "our") collects, uses, stores and protects information from users who access and use the recognICE mobile application, available for Android and iOS devices.',
+    s1_p2:'By downloading, installing or using the Application, you agree to the terms described in this Privacy Policy. If you do not agree with any of the terms set forth herein, please do not use the Application.',
+    s1_highlight:'recognICE is a community safety tool. We are committed to collecting only the minimum data necessary to provide our services, and we will never sell or commercialize your personal information.',
+    s2_title:'Information We Collect',
+    s2_h1:'2.1 Location Data',
+    s2_p1:'The Application collects geographic location data (latitude and longitude) from the user\'s device for the following purposes:',
+    s2_l1:'<strong>Map display:</strong> To show your position on the real-time map.',
+    s2_l2:'<strong>Proximity alerts:</strong> To detect ICE operations within 150 meters of your location and send immediate notifications.',
+    s2_l3:'<strong>Route planning:</strong> To trace routes and detect ICE activity along your path.',
+    s2_l4:'<strong>Background monitoring:</strong> The app requests always-on location access to send alerts even when the app is closed.',
+    s2_h2:'2.2 User-Generated Content',
+    s2_p2:'Users may voluntarily report ICE operation locations. This information includes:',
+    s2_l5:'Geographic coordinates of the reported operation.',
+    s2_l6:'Optional text description provided by the user.',
+    s2_l7:'Timestamp (date and time) of the report.',
+    s2_p3:'This information is stored in our cloud database and is visible to all users of the Application. Reports are automatically deleted 12 hours after creation.',
+    s2_h3:'2.3 Anonymous User Identifier',
+    s2_p4:'The Application uses anonymous authentication provided by Firebase Authentication (Google LLC). A unique anonymous identifier (UID) is generated for each device. This identifier is <strong>not linked</strong> to any personally identifiable information such as name, email address, phone number or other personal data.',
+    s2_h4:'2.4 Technical Data',
+    s2_p5:'The Application may automatically collect certain technical data necessary for its operation, including device type and operating system, installed application version, and error logs and performance data.',
+    s3_title:'How We Use Your Information',
+    s3_intro:'The information collected is used exclusively for the following purposes:',
+    s3_l1:'Providing the core features of the Application, including the real-time map and proximity alerts.',
+    s3_l2:'Sending push notifications when ICE activity is detected near the user.',
+    s3_l3:'Sharing anonymized report information with other Application users.',
+    s3_l4:'Improving the performance and functionality of the Application.',
+    s3_l5:'Ensuring security and preventing fraudulent or abusive use of the Application.',
+    s3_h1:'We do NOT use collected information to:',
+    s3_l6:'Sell, rent or commercialize personal data to third parties.',
+    s3_l7:'Serve targeted or personalized advertising.',
+    s3_l8:'Create identifiable user profiles.',
+    s3_l9:'Any purpose other than those expressly stated in this Policy.',
+    s4_title:'Third-Party Services',
+    s4_p1:'We use Firebase, a Google LLC service, for cloud storage and real-time synchronization of ICE activity reports (Firebase Firestore), and anonymous user authentication (Firebase Authentication). Use of Firebase is subject to Google\'s Privacy Policy at <a href="https://policies.google.com/privacy" target="_blank" style="color:var(--yc-cyan);">policies.google.com/privacy</a>.',
+    s4_p2:'The Application uses OpenStreetMap for map visualization and the OSRM service for route calculation. These services may receive geographic coordinates to process route requests. Their use is subject to their respective policies.',
+    s4_p3:'The Application uses the Nominatim geocoding service from OpenStreetMap for place searches. Search queries are sent to Nominatim servers for processing.',
+    s5_title:'Data Storage & Security',
+    s5_p1:'Data stored in our database is protected by the security measures provided by Firebase/Google Cloud, including encryption in transit (TLS/HTTPS) and at rest.',
+    s5_p2:'ICE activity reports are automatically deleted after 12 hours. We do not store historical location data from users.',
+    s5_highlight:'Despite the security measures implemented, no electronic transmission or storage system is 100% secure. We cannot guarantee the absolute security of information transmitted through the Application.',
+    s6_title:'Your Rights',
+    s6_intro:'In accordance with applicable data protection laws, users have the following rights:',
+    s6_l1:'<strong>Access:</strong> Request information about data collected associated with your device.',
+    s6_l2:'<strong>Deletion:</strong> Request deletion of data associated with your anonymous identifier.',
+    s6_l3:'<strong>Permission revocation:</strong> Revoke location permissions at any time through device settings. Note that this may affect the Application\'s functionality.',
+    s6_p1:'To exercise any of these rights, please contact us through the means indicated in Section 10 of this document.',
+    s7_title:"Children's Privacy",
+    s7_p1:'The Application is not directed at children under 13 years of age. We do not knowingly collect information from children under 13. If you are a parent or guardian and become aware that your minor child has provided personal information, please contact us so we can take the necessary steps.',
+    s8_title:'App Permissions',
+    s8_a1:'<strong>ACCESS_FINE_LOCATION & ACCESS_COARSE_LOCATION:</strong> To obtain the user\'s location.',
+    s8_a2:'<strong>ACCESS_BACKGROUND_LOCATION:</strong> To monitor location in the background and send alerts when the app is closed.',
+    s8_a3:'<strong>POST_NOTIFICATIONS:</strong> To send alert notifications to the user.',
+    s8_a4:'<strong>INTERNET:</strong> To communicate with Firebase servers and mapping services.',
+    s8_a5:'<strong>FOREGROUND_SERVICE:</strong> To keep the background monitoring service active.',
+    s8_a6:'<strong>RECEIVE_BOOT_COMPLETED:</strong> To restart the monitoring service when the device is turned on.',
+    s8_i1:'<strong>NSLocationWhenInUseUsageDescription:</strong> Location while the app is in use.',
+    s8_i2:'<strong>NSLocationAlwaysAndWhenInUseUsageDescription:</strong> Background location for continuous alerts.',
+    s9_title:'Changes to This Policy',
+    s9_p1:'We reserve the right to update this Privacy Policy at any time. Changes will take effect immediately upon publication in the Application or on our website. We recommend reviewing this Policy periodically to stay informed about how we protect your information.',
+    s9_p2:'The date of the last update will always be indicated at the top of this document.',
+    s10_title:'Contact Us',
+    s10_p1:'If you have questions, concerns or requests related to this Privacy Policy or the processing of your personal data, you may contact us through the following means:',
+    s10_email_label:'Email:', s10_addr_label:'Address:',
+    s10_addr:'599 Cedar Lane, Ap 1A, Teaneck, NJ 07666, United States',
+    s10_company_label:'Company:', s10_ceos_label:'Directors:',
+    s11_title:'Jurisdiction & Applicable Law',
+    s11_p1:'This Privacy Policy is governed by the laws applicable in the jurisdiction where the developing company operates. For users located in the United States, we comply with the applicable provisions of the California Consumer Privacy Act (CCPA) and other applicable state and federal privacy laws.',
+    s11_p2:'For users located in the European Economic Area (EEA), we process data in accordance with the General Data Protection Regulation (GDPR).',
+    footer_rights:'All rights reserved.'
+  },
+  es: {
+    back:'Volver al inicio', page_title:'Política de Privacidad',
+    effective:'Fecha de vigencia:', app_name:'Aplicación: recognICE',
+    toc_title:'Tabla de Contenidos',
+    toc_1:'Introducción', toc_2:'Información que Recopilamos', toc_3:'Uso de la Información',
+    toc_4:'Servicios de Terceros', toc_5:'Almacenamiento y Seguridad', toc_6:'Derechos del Usuario',
+    toc_7:'Menores de Edad', toc_8:'Permisos de la App', toc_9:'Cambios en esta Política',
+    toc_10:'Contacto', toc_11:'Jurisdicción y Ley Aplicable',
+    s1_title:'Introducción',
+    s1_p1:'La presente Política de Privacidad describe cómo <strong>Y&C Tech Global Development</strong> ("la Empresa", "nosotros" o "nuestro") recopila, utiliza, almacena y protege la información de los usuarios que acceden y utilizan la aplicación móvil recognICE, disponible para dispositivos Android e iOS.',
+    s1_p2:'Al descargar, instalar o utilizar la Aplicación, usted acepta los términos descritos en esta Política de Privacidad. Si no está de acuerdo con alguno de los términos aquí establecidos, le rogamos que no utilice la Aplicación.',
+    s1_highlight:'recognICE es una herramienta de seguridad comunitaria. Estamos comprometidos a recopilar únicamente los datos mínimos necesarios para prestar nuestros servicios, y nunca venderemos ni comercializaremos su información personal.',
+    s2_title:'Información que Recopilamos',
+    s2_h1:'2.1 Datos de Ubicación',
+    s2_p1:'La Aplicación recopila datos de ubicación geográfica (latitud y longitud) del dispositivo del usuario con los siguientes propósitos:',
+    s2_l1:'<strong>Visualización en mapa:</strong> Para mostrar su posición en el mapa en tiempo real.',
+    s2_l2:'<strong>Alertas de proximidad:</strong> Para detectar operativos ICE dentro de un radio de 150 metros y enviar notificaciones inmediatas.',
+    s2_l3:'<strong>Planificación de rutas:</strong> Para trazar rutas y detectar actividad ICE en su recorrido.',
+    s2_l4:'<strong>Monitoreo en background:</strong> La app solicita acceso permanente a la ubicación para enviar alertas incluso cuando la app está cerrada.',
+    s2_h2:'2.2 Contenido Generado por el Usuario',
+    s2_p2:'Los usuarios pueden reportar voluntariamente la ubicación de operativos ICE. Esta información incluye:',
+    s2_l5:'Coordenadas geográficas del operativo reportado.',
+    s2_l6:'Descripción opcional en texto proporcionada por el usuario.',
+    s2_l7:'Marca de tiempo (fecha y hora) del reporte.',
+    s2_p3:'Esta información es almacenada en nuestra base de datos en la nube y es visible para todos los usuarios de la Aplicación. Los reportes se eliminan automáticamente a las 12 horas de su creación.',
+    s2_h3:'2.3 Identificador de Usuario Anónimo',
+    s2_p4:'La Aplicación utiliza autenticación anónima proporcionada por Firebase Authentication (Google LLC). Se genera un identificador único anónimo (UID) para cada dispositivo. Este identificador <strong>no está vinculado</strong> a ningún dato personal identificable como nombre, correo electrónico, número de teléfono u otra información personal.',
+    s2_h4:'2.4 Datos Técnicos',
+    s2_p5:'La Aplicación puede recopilar automáticamente ciertos datos técnicos necesarios para su funcionamiento, incluyendo tipo de dispositivo y sistema operativo, versión instalada de la aplicación, y registros de errores y datos de rendimiento.',
+    s3_title:'Uso de la Información',
+    s3_intro:'La información recopilada es utilizada exclusivamente para los siguientes fines:',
+    s3_l1:'Proveer las funcionalidades principales de la Aplicación, incluyendo el mapa en tiempo real y las alertas de proximidad.',
+    s3_l2:'Enviar notificaciones push cuando se detecte actividad ICE cerca del usuario.',
+    s3_l3:'Compartir información de reportes de forma anónima con otros usuarios de la Aplicación.',
+    s3_l4:'Mejorar el rendimiento y funcionalidades de la Aplicación.',
+    s3_l5:'Garantizar la seguridad y prevenir usos fraudulentos o abusivos de la Aplicación.',
+    s3_h1:'NO utilizamos la información recopilada para:',
+    s3_l6:'Vender, alquilar o comercializar datos personales a terceros.',
+    s3_l7:'Publicidad dirigida o personalizada.',
+    s3_l8:'Crear perfiles de usuario identificables.',
+    s3_l9:'Cualquier propósito distinto a los expresamente mencionados en esta Política.',
+    s4_title:'Servicios de Terceros',
+    s4_p1:'Utilizamos Firebase, un servicio de Google LLC, para el almacenamiento y sincronización en tiempo real de reportes de actividad ICE (Firebase Firestore), y autenticación anónima de usuarios (Firebase Authentication). El uso de Firebase está sujeto a la Política de Privacidad de Google en <a href="https://policies.google.com/privacy" target="_blank" style="color:var(--yc-cyan);">policies.google.com/privacy</a>.',
+    s4_p2:'La Aplicación utiliza OpenStreetMap para la visualización de mapas y el servicio OSRM para el cálculo de rutas. Estos servicios pueden recibir coordenadas geográficas para procesar solicitudes de rutas. Su uso está sujeto a sus respectivas políticas.',
+    s4_p3:'La Aplicación utiliza el servicio de geocodificación Nominatim de OpenStreetMap para la búsqueda de lugares. Las consultas de búsqueda son enviadas a los servidores de Nominatim para su procesamiento.',
+    s5_title:'Almacenamiento y Seguridad de Datos',
+    s5_p1:'Los datos almacenados en nuestra base de datos están protegidos por las medidas de seguridad proporcionadas por Firebase/Google Cloud, que incluyen cifrado en tránsito (TLS/HTTPS) y en reposo.',
+    s5_p2:'Los reportes de actividad ICE se eliminan automáticamente después de 12 horas. No almacenamos datos de ubicación histórica de los usuarios.',
+    s5_highlight:'A pesar de las medidas de seguridad implementadas, ningún sistema de transmisión o almacenamiento electrónico es 100% seguro. No podemos garantizar la seguridad absoluta de la información transmitida a través de la Aplicación.',
+    s6_title:'Derechos del Usuario',
+    s6_intro:'De conformidad con las leyes de protección de datos aplicables, los usuarios tienen los siguientes derechos:',
+    s6_l1:'<strong>Acceso:</strong> Solicitar información sobre los datos recopilados asociados a su dispositivo.',
+    s6_l2:'<strong>Eliminación:</strong> Solicitar la eliminación de los datos asociados a su identificador anónimo.',
+    s6_l3:'<strong>Revocación de permisos:</strong> Revocar en cualquier momento los permisos de ubicación a través de la configuración del dispositivo. Tenga en cuenta que esto puede afectar el funcionamiento de la Aplicación.',
+    s6_p1:'Para ejercer cualquiera de estos derechos, puede contactarnos a través de los medios indicados en la Sección 10 de este documento.',
+    s7_title:'Menores de Edad',
+    s7_p1:'La Aplicación no está dirigida a menores de 13 años. No recopilamos conscientemente información de menores de 13 años. Si usted es padre, madre o tutor y tiene conocimiento de que su hijo menor de 13 años ha proporcionado información personal, le rogamos que nos contacte para que podamos tomar las medidas necesarias.',
+    s8_title:'Permisos de la Aplicación',
+    s8_a1:'<strong>ACCESS_FINE_LOCATION y ACCESS_COARSE_LOCATION:</strong> Para obtener la ubicación del usuario.',
+    s8_a2:'<strong>ACCESS_BACKGROUND_LOCATION:</strong> Para monitorear la ubicación en segundo plano y enviar alertas cuando la app está cerrada.',
+    s8_a3:'<strong>POST_NOTIFICATIONS:</strong> Para enviar notificaciones de alerta al usuario.',
+    s8_a4:'<strong>INTERNET:</strong> Para comunicarse con los servidores de Firebase y servicios de mapas.',
+    s8_a5:'<strong>FOREGROUND_SERVICE:</strong> Para mantener el servicio de monitoreo activo en segundo plano.',
+    s8_a6:'<strong>RECEIVE_BOOT_COMPLETED:</strong> Para reiniciar el servicio de monitoreo al encender el dispositivo.',
+    s8_i1:'<strong>NSLocationWhenInUseUsageDescription:</strong> Ubicación mientras la app está en uso.',
+    s8_i2:'<strong>NSLocationAlwaysAndWhenInUseUsageDescription:</strong> Ubicación en segundo plano para alertas continuas.',
+    s9_title:'Cambios en esta Política',
+    s9_p1:'Nos reservamos el derecho de actualizar esta Política de Privacidad en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación en la Aplicación o en nuestro sitio web. Le recomendamos revisar periódicamente esta Política para mantenerse informado sobre cómo protegemos su información.',
+    s9_p2:'La fecha de la última actualización siempre estará indicada al inicio de este documento.',
+    s10_title:'Contacto',
+    s10_p1:'Si tiene preguntas, dudas o solicitudes relacionadas con esta Política de Privacidad o con el tratamiento de sus datos personales, puede contactarnos a través de los siguientes medios:',
+    s10_email_label:'Correo:', s10_addr_label:'Dirección:',
+    s10_addr:'599 Cedar Lane, Ap 1A, Teaneck, NJ 07666, Estados Unidos',
+    s10_company_label:'Empresa:', s10_ceos_label:'Directores:',
+    s11_title:'Jurisdicción y Ley Aplicable',
+    s11_p1:'Esta Política de Privacidad se rige por las leyes aplicables en la jurisdicción donde opera la empresa desarrolladora. Para usuarios ubicados en Estados Unidos, cumplimos con las disposiciones aplicables de la California Consumer Privacy Act (CCPA) y otras leyes estatales y federales de privacidad aplicables.',
+    s11_p2:'Para usuarios ubicados en el Espacio Económico Europeo (EEE), procesamos datos de conformidad con el Reglamento General de Protección de Datos (RGPD/GDPR).',
+    footer_rights:'Todos los derechos reservados.'
+  }
+};
+
+let lang = 'en';
+
+function setLang(l) {
+  lang = l;
+  document.documentElement.lang = l;
+  const t = T[l];
+  document.getElementById('btn-en').classList.toggle('active', l==='en');
+  document.getElementById('btn-es').classList.toggle('active', l==='es');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+}
+</script>
+</body>
+</html>

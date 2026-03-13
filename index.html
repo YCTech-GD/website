@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Y&C Tech Global Development — recognICE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --yc-dark: #060D1A; --yc-navy: #0A1628; --yc-blue: #1B4FD8;
+  --yc-cyan: #38BDF8; --yc-silver: #94A3B8; --yc-light: #E2E8F0;
+  --yc-white: #F8FAFC; --app-dark: #0D0608; --app-mid: #1A0A08;
+  --transition: cubic-bezier(0.23, 1, 0.32, 1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Exo 2',sans-serif;background:var(--yc-dark);color:var(--yc-light);overflow-x:hidden;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--yc-dark);}
+::-webkit-scrollbar-thumb{background:var(--yc-blue);border-radius:3px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(6,13,26,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(56,189,248,0.1);transition:all 0.3s var(--transition);}
+nav.scrolled{padding:0.6rem 3rem;background:rgba(6,13,26,0.97);}
+.nav-logo img{height:44px;object-fit:contain;}
+.nav-right{display:flex;align-items:center;gap:1.5rem;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'Orbitron',monospace;font-size:0.68rem;font-weight:600;letter-spacing:0.15em;color:var(--yc-silver);text-decoration:none;text-transform:uppercase;transition:color 0.3s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--yc-cyan);transition:width 0.3s var(--transition);}
+.nav-links a:hover{color:var(--yc-cyan);}
+.nav-links a:hover::after{width:100%;}
+
+/* Lang toggle */
+.lang-toggle{display:flex;align-items:center;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);border-radius:100px;overflow:hidden;flex-shrink:0;}
+.lang-btn{font-family:'Space Mono',monospace;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;padding:0.4rem 0.9rem;border:none;background:transparent;color:var(--yc-silver);cursor:pointer;transition:all 0.2s;text-transform:uppercase;}
+.lang-btn.active{background:var(--yc-blue);color:white;}
+
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--yc-silver);border-radius:2px;transition:all 0.3s var(--transition);}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* Mobile menu */
+.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;z-index:999;background:rgba(6,13,26,0.98);backdrop-filter:blur(20px);border-bottom:1px solid rgba(56,189,248,0.1);padding:1.5rem 2rem;flex-direction:column;gap:1.2rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Orbitron',monospace;font-size:0.75rem;color:var(--yc-silver);text-decoration:none;letter-spacing:0.15em;text-transform:uppercase;padding:0.5rem 0;border-bottom:1px solid rgba(56,189,248,0.06);transition:color 0.3s;}
+.mobile-menu a:hover{color:var(--yc-cyan);}
+.mobile-lang{display:flex;gap:0.5rem;padding-top:0.5rem;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:var(--yc-dark);}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(27,79,216,0.18) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 50%,rgba(56,189,248,0.06) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(27,79,216,0.08) 0%,transparent 60%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(27,79,216,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(27,79,216,0.08) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);}
+.hero-content{position:relative;z-index:2;text-align:center;padding:2rem;max-width:900px;}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(27,79,216,0.12);border:1px solid rgba(56,189,248,0.3);border-radius:100px;padding:0.4rem 1.2rem;font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--yc-cyan);letter-spacing:0.1em;margin-bottom:2rem;animation:fadeDown 0.8s var(--transition) both;}
+.hero-badge span{width:6px;height:6px;background:var(--yc-cyan);border-radius:50%;animation:pulse 2s infinite;}
+.hero-title{font-family:'Orbitron',monospace;font-size:clamp(2.2rem,7vw,5.5rem);font-weight:900;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.5rem;animation:fadeUp 0.9s 0.2s var(--transition) both;}
+.hero-title .line1{display:block;color:var(--yc-white);}
+.hero-title .line2{display:block;background:linear-gradient(135deg,#1B4FD8,#38BDF8,#1B4FD8);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite,fadeUp 0.9s 0.2s var(--transition) both;}
+.hero-sub{font-size:1.1rem;font-weight:300;color:var(--yc-silver);max-width:600px;margin:0 auto 3rem;line-height:1.7;animation:fadeUp 0.9s 0.4s var(--transition) both;}
+.hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.9s 0.6s var(--transition) both;}
+.btn-primary{display:inline-flex;align-items:center;gap:0.6rem;background:linear-gradient(135deg,#1B4FD8,#2563EB);color:white;padding:0.85rem 2rem;border-radius:6px;font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-decoration:none;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.3s var(--transition);box-shadow:0 0 30px rgba(27,79,216,0.4);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(27,79,216,0.6);}
+.btn-outline{display:inline-flex;align-items:center;gap:0.6rem;background:transparent;color:var(--yc-cyan);padding:0.85rem 2rem;border-radius:6px;font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-decoration:none;text-transform:uppercase;border:1px solid rgba(56,189,248,0.4);cursor:pointer;transition:all 0.3s var(--transition);}
+.btn-outline:hover{background:rgba(56,189,248,0.08);border-color:var(--yc-cyan);transform:translateY(-2px);}
+
+/* SECTIONS */
+section{padding:7rem 2rem;}
+.container{max-width:1200px;margin:0 auto;}
+.section-label{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.25em;color:var(--yc-cyan);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:1rem;}
+.section-label::before{content:'';width:30px;height:1px;background:var(--yc-cyan);}
+.section-title{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,4vw,3rem);font-weight:700;line-height:1.15;margin-bottom:1.5rem;color:var(--yc-white);}
+.section-title em{font-style:normal;background:linear-gradient(135deg,#1B4FD8,#38BDF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* ABOUT */
+.about{background:linear-gradient(180deg,var(--yc-dark) 0%,var(--yc-navy) 100%);position:relative;overflow:hidden;}
+.about::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(27,79,216,0.06) 0%,transparent 70%);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-text p{font-size:1rem;line-height:1.85;color:var(--yc-silver);margin-bottom:1.2rem;font-weight:300;}
+.about-text p strong{color:var(--yc-light);font-weight:600;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem;}
+.stat-card{background:rgba(27,79,216,0.07);border:1px solid rgba(56,189,248,0.12);border-radius:12px;padding:1.5rem;transition:all 0.3s var(--transition);}
+.stat-card:hover{background:rgba(27,79,216,0.12);border-color:rgba(56,189,248,0.3);transform:translateY(-3px);}
+.stat-number{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:var(--yc-cyan);line-height:1;margin-bottom:0.4rem;}
+.stat-label{font-size:0.8rem;color:var(--yc-silver);font-weight:300;letter-spacing:0.05em;}
+.about-visual{position:relative;display:flex;align-items:center;justify-content:center;}
+.logo-showcase{position:relative;width:100%;max-width:420px;}
+.logo-showcase img{width:100%;border-radius:20px;box-shadow:0 0 0 1px rgba(56,189,248,0.15),0 30px 80px rgba(0,0,0,0.5),0 0 60px rgba(27,79,216,0.15);}
+.logo-ring{position:absolute;inset:-20px;border-radius:28px;border:1px solid rgba(56,189,248,0.12);animation:ringPulse 4s ease-in-out infinite;}
+.logo-ring-2{position:absolute;inset:-40px;border-radius:36px;border:1px solid rgba(56,189,248,0.06);animation:ringPulse 4s ease-in-out infinite 1s;}
+
+/* TEAM */
+.team{background:var(--yc-navy);}
+.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:700px;margin:0 auto;}
+.team-card{background:rgba(255,255,255,0.03);border:1px solid rgba(56,189,248,0.1);border-radius:16px;padding:2.5rem 2rem;text-align:center;transition:all 0.4s var(--transition);position:relative;overflow:hidden;}
+.team-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--yc-blue),var(--yc-cyan),transparent);opacity:0;transition:opacity 0.3s;}
+.team-card:hover{transform:translateY(-6px);border-color:rgba(56,189,248,0.25);}
+.team-card:hover::before{opacity:1;}
+.team-avatar{width:100px;height:100px;border-radius:50%;margin:0 auto 1.5rem;background:linear-gradient(135deg,rgba(27,79,216,0.3),rgba(56,189,248,0.1));border:2px solid rgba(56,189,248,0.2);display:flex;align-items:center;justify-content:center;}
+.avatar-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.avatar-placeholder svg{width:55px;height:55px;opacity:0.4;}
+.team-name{font-family:'Orbitron',monospace;font-size:0.95rem;font-weight:700;color:var(--yc-white);margin-bottom:0.4rem;letter-spacing:0.05em;}
+.team-role{font-size:0.78rem;color:var(--yc-cyan);font-weight:300;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;}
+.team-bio{font-size:0.85rem;color:var(--yc-silver);line-height:1.6;font-weight:300;}
+
+/* SEDE */
+.sede-bar{background:linear-gradient(135deg,rgba(27,79,216,0.15),rgba(56,189,248,0.05));border-top:1px solid rgba(56,189,248,0.1);border-bottom:1px solid rgba(56,189,248,0.1);padding:2rem;text-align:center;}
+.sede-content{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;}
+.sede-icon{font-size:1.5rem;}
+.sede-text{font-family:'Space Mono',monospace;font-size:0.8rem;color:var(--yc-silver);letter-spacing:0.05em;}
+.sede-text strong{color:var(--yc-cyan);}
+
+/* APP SECTION */
+.app-section{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--yc-navy) 0%,#120810 30%,var(--app-mid) 60%,var(--app-dark) 100%);padding:7rem 2rem;}
+.app-section::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:linear-gradient(180deg,var(--yc-navy),transparent);}
+.app-section::after{content:'';position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(204,26,0,0.08) 0%,transparent 70%);pointer-events:none;}
+.app-hero{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-bottom:6rem;}
+.app-text .section-label{color:#FF4422;}
+.app-text .section-label::before{background:#FF4422;}
+.app-text .section-title em{background:linear-gradient(135deg,#CC1A00,#FF4422);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.app-text p{font-size:1rem;line-height:1.85;color:#94A3B8;margin-bottom:1.2rem;font-weight:300;}
+.app-features{display:flex;flex-direction:column;gap:0.8rem;margin-top:2rem;}
+.feature-item{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.2rem;background:rgba(204,26,0,0.05);border:1px solid rgba(204,26,0,0.15);border-radius:8px;transition:all 0.3s var(--transition);}
+.feature-item:hover{background:rgba(204,26,0,0.1);border-color:rgba(255,68,34,0.3);transform:translateX(4px);}
+.feature-icon{font-size:1.2rem;line-height:1;flex-shrink:0;margin-top:2px;}
+.feature-text strong{display:block;font-size:0.85rem;color:var(--yc-light);font-weight:600;margin-bottom:0.2rem;}
+.feature-text span{font-size:0.8rem;color:#64748B;font-weight:300;}
+.app-icon-showcase{display:flex;align-items:center;justify-content:center;position:relative;}
+.app-icon-wrapper{position:relative;width:260px;height:260px;}
+.app-icon-wrapper img{width:100%;height:100%;object-fit:contain;border-radius:40px;filter:drop-shadow(0 0 60px rgba(204,26,0,0.4));animation:float 6s ease-in-out infinite;}
+.app-glow{position:absolute;inset:-30px;border-radius:60px;background:radial-gradient(circle,rgba(204,26,0,0.15) 0%,transparent 70%);animation:glowPulse 3s ease-in-out infinite;}
+
+/* SCREENSHOTS */
+.screenshots-section{position:relative;z-index:2;}
+.screenshots-title{text-align:center;margin-bottom:3rem;}
+.screenshots-title h3{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:700;color:var(--yc-white);margin-bottom:0.5rem;}
+.screenshots-title p{font-size:0.9rem;color:#64748B;font-weight:300;}
+.screenshots-scroll{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+.screenshot-card{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(204,26,0,0.15);transition:all 0.4s var(--transition);aspect-ratio:9/19;background:#0A0305;}
+.screenshot-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s var(--transition);}
+.screenshot-card:hover{border-color:rgba(255,68,34,0.4);transform:translateY(-8px);box-shadow:0 20px 60px rgba(204,26,0,0.25);}
+.screenshot-card:hover img{transform:scale(1.03);}
+.screenshots-row2{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:1.2rem;}
+
+/* STORE */
+.store-section{background:var(--app-dark);padding:5rem 2rem;text-align:center;position:relative;}
+.store-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(204,26,0,0.05) 0%,transparent 70%);}
+.store-content{position:relative;z-index:2;}
+.store-content h3{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:700;color:var(--yc-white);margin-bottom:0.8rem;}
+.store-content p{font-size:0.9rem;color:#64748B;margin-bottom:2.5rem;font-weight:300;}
+.store-badges{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+.store-badge{display:flex;align-items:center;gap:0.8rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:0.9rem 1.8rem;text-decoration:none;transition:all 0.3s var(--transition);color:var(--yc-white);}
+.store-badge:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.25);transform:translateY(-3px);}
+.store-badge-icon{font-size:2rem;}
+.store-badge-text{text-align:left;}
+.store-badge-text small{display:block;font-size:0.65rem;color:#94A3B8;letter-spacing:0.05em;}
+.store-badge-text strong{display:block;font-family:'Orbitron',monospace;font-size:0.85rem;font-weight:700;}
+
+/* CONTACT */
+.contact{background:linear-gradient(180deg,var(--app-dark) 0%,var(--yc-dark) 100%);padding:7rem 2rem;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.contact-info h3{font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:700;color:var(--yc-white);margin-bottom:1rem;}
+.contact-info p{font-size:0.95rem;color:var(--yc-silver);line-height:1.8;font-weight:300;margin-bottom:2rem;}
+.contact-detail{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1rem;}
+.contact-detail-icon{width:40px;height:40px;background:rgba(27,79,216,0.12);border:1px solid rgba(56,189,248,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.contact-detail-text small{display:block;font-size:0.7rem;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.2rem;}
+.contact-detail-text span{font-size:0.85rem;color:var(--yc-light);}
+.contact-form{background:rgba(255,255,255,0.02);border:1px solid rgba(56,189,248,0.1);border-radius:16px;padding:2.5rem;}
+.form-group{margin-bottom:1.2rem;}
+.form-group label{display:block;font-size:0.72rem;font-family:'Space Mono',monospace;color:var(--yc-silver);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(56,189,248,0.12);border-radius:8px;padding:0.85rem 1rem;color:var(--yc-light);font-family:'Exo 2',sans-serif;font-size:0.9rem;font-weight:300;outline:none;transition:all 0.3s;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:rgba(56,189,248,0.4);background:rgba(56,189,248,0.04);}
+.form-group textarea{min-height:130px;resize:vertical;}
+.form-group select option{background:var(--yc-navy);}
+.form-submit{width:100%;background:linear-gradient(135deg,#1B4FD8,#2563EB);color:white;border:none;border-radius:8px;padding:1rem;font-family:'Orbitron',monospace;font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s var(--transition);box-shadow:0 0 30px rgba(27,79,216,0.3);margin-top:0.5rem;}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(27,79,216,0.5);}
+.form-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+.form-message{margin-top:1rem;padding:0.8rem 1rem;border-radius:8px;font-size:0.85rem;display:none;}
+.form-message.success{display:block;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#86EFAC;}
+
+/* FOOTER */
+footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:3rem 2rem;}
+.footer-content{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-logo img{height:36px;object-fit:contain;}
+.footer-text{font-size:0.78rem;color:#334155;font-weight:300;text-align:center;}
+.footer-text a{color:var(--yc-cyan);text-decoration:none;}
+.footer-links{display:flex;gap:2rem;list-style:none;}
+.footer-links a{font-size:0.75rem;color:#475569;text-decoration:none;font-family:'Space Mono',monospace;letter-spacing:0.05em;transition:color 0.3s;}
+.footer-links a:hover{color:var(--yc-cyan);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes shimmer{0%{background-position:0% center;}100%{background-position:200% center;}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+@keyframes ringPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(1.02);}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-16px);}}
+@keyframes glowPulse{0%,100%{opacity:0.6;transform:scale(1);}50%{opacity:1;transform:scale(1.05);}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s var(--transition),transform 0.8s var(--transition);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .about-grid,.app-hero,.contact-grid{grid-template-columns:1fr;gap:3rem;}
+  .team-grid{grid-template-columns:1fr;max-width:360px;}
+  .screenshots-scroll,.screenshots-row2{grid-template-columns:repeat(2,1fr);}
+  .about-visual{order:-1;}
+  .app-icon-showcase{order:-1;}
+  .footer-content{flex-direction:column;text-align:center;}
+  .footer-links{justify-content:center;}
+}
+@media(max-width:500px){
+  nav{padding:0.8rem 1rem;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .screenshots-scroll,.screenshots-row2{grid-template-columns:repeat(2,1fr);gap:0.8rem;}
+  section{padding:5rem 1.2rem;}
+  .contact-form{padding:1.5rem;}
+  .lang-btn{padding:0.35rem 0.65rem;font-size:0.6rem;}
+  .app-icon-wrapper{width:200px;height:200px;}
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-logo"><img src="images/logo_empresa.png" alt="Y&C Tech"/></div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#company" data-i18n="nav_company">Company</a></li>
+      <li><a href="#team" data-i18n="nav_team">Team</a></li>
+      <li><a href="#app" data-i18n="nav_app">recognICE</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+      <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#company" onclick="closeMenu()" data-i18n="nav_company">Company</a>
+  <a href="#team" onclick="closeMenu()" data-i18n="nav_team">Team</a>
+  <a href="#app" onclick="closeMenu()" data-i18n="nav_app">recognICE</a>
+  <a href="#contact" onclick="closeMenu()" data-i18n="nav_contact">Contact</a>
+  <div class="mobile-lang">
+    <button class="lang-btn active" onclick="setLang('en');closeMenu()" id="mbtn-en">EN</button>
+    <button class="lang-btn" onclick="setLang('es');closeMenu()" id="mbtn-es">ES</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span></span> Y&C Tech Global Development</div>
+    <h1 class="hero-title">
+      <span class="line1" data-i18n="hero_line1">Technology that</span>
+      <span class="line2" data-i18n="hero_line2">Transforms</span>
+    </h1>
+    <p class="hero-sub" data-i18n="hero_sub">We develop world-class digital solutions that connect communities, protect people and define the future of mobile technology.</p>
+    <div class="hero-ctas">
+      <a href="#app" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        <span data-i18n="hero_cta1">See recognICE</span>
+      </a>
+      <a href="#contact" class="btn-outline"><span data-i18n="hero_cta2">Contact Us</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="company">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-label" data-i18n="about_label">Who we are</div>
+        <h2 class="section-title"><span data-i18n="about_title1">High-impact</span> <em data-i18n="about_title2">Engineering</em></h2>
+        <p data-i18n="about_p1"><strong>Y&C Tech Global Development</strong> is a software development company founded with a clear mission: to create technology that solves real problems for real communities. We operate from <strong>Teaneck, New Jersey</strong>, with a global vision and precision execution.</p>
+        <p data-i18n="about_p2">Our team combines years of experience in software engineering, product design and cloud systems architecture. From high-performance mobile applications to real-time data platforms, we build with the most advanced technologies: <strong>Flutter, Firebase, cloud-native infrastructure</strong> and more.</p>
+        <p data-i18n="about_p3">At Y&C Tech we don't just write code — we design experiences, solve human problems and build products that scale. Our commitment to quality and innovation has positioned us as a benchmark in mobile application development for the North American market.</p>
+        <div class="stats-grid">
+          <div class="stat-card reveal"><div class="stat-number">100%</div><div class="stat-label" data-i18n="stat1">Native cross-platform development</div></div>
+          <div class="stat-card reveal"><div class="stat-number">Real-time</div><div class="stat-label" data-i18n="stat2">Live data architecture</div></div>
+          <div class="stat-card reveal"><div class="stat-number">iOS+</div><div class="stat-label" data-i18n="stat3">Android — full coverage</div></div>
+          <div class="stat-card reveal"><div class="stat-number">24/7</div><div class="stat-label" data-i18n="stat4">Background monitoring & alerts</div></div>
+        </div>
+      </div>
+      <div class="about-visual reveal">
+        <div class="logo-showcase">
+          <div class="logo-ring"></div><div class="logo-ring-2"></div>
+          <img src="images/logo_empresa.png" alt="Y&C Tech"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEDE -->
+<div class="sede-bar">
+  <div class="sede-content">
+    <div class="sede-icon">📍</div>
+    <div class="sede-text"><strong data-i18n="sede_label">Physical headquarters:</strong> <span data-i18n="sede_addr">599 Cedar Lane, Ap 1A — Teaneck, NJ 07666, United States</span></div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3.5rem;" class="reveal">
+      <div class="section-label" style="justify-content:center;" data-i18n="team_label">Our team</div>
+      <h2 class="section-title"><span data-i18n="team_title1">The minds</span> <em data-i18n="team_title2">behind the technology</em></h2>
+      <p style="color:var(--yc-silver);font-weight:300;max-width:500px;margin:0 auto;font-size:0.95rem;line-height:1.7;" data-i18n="team_sub">Leaders with vision, technical expertise and a passion for building products that matter.</p>
+    </div>
+    <div class="team-grid reveal">
+      <div class="team-card">
+        <div class="team-avatar"><div class="avatar-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(56,189,248,0.6)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div></div>
+        <div class="team-name">Ivan Contreras</div>
+        <div class="team-role" data-i18n="ivan_role">Co-Founder & CEO</div>
+        <div class="team-bio" data-i18n="ivan_bio">Software developer with hands-on experience in Flutter, Firebase, cross-platform mobile architectures and general software development. Leads product development at Y&C Tech from conception to deployment, with an obsessive focus on user experience, code quality and building digital solutions that scale.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar"><div class="avatar-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(56,189,248,0.6)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div></div>
+        <div class="team-name">Mauricio Soto</div>
+        <div class="team-role" data-i18n="mauricio_role">Co-Founder & COO</div>
+        <div class="team-bio" data-i18n="mauricio_bio">Business strategist with solid experience in operations management, business development and organizational administration. Responsible for the strategic direction, commercial partnerships and sustainable growth of Y&C Tech in the North American market.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP -->
+<section class="app-section" id="app">
+  <div class="container">
+    <div class="app-hero">
+      <div class="app-text reveal">
+        <div class="section-label" data-i18n="app_label">Our flagship product</div>
+        <h2 class="section-title"><span data-i18n="app_title1">Meet</span> <em>recognICE</em></h2>
+        <p data-i18n="app_p1"><strong style="color:#E2E8F0;">recognICE</strong> is the first real-time community alert mobile app designed to inform communities about the presence of ICE (Immigration and Customs Enforcement) operations in their area.</p>
+        <p data-i18n="app_p2">Built with cutting-edge technology — <strong style="color:#E2E8F0;">Flutter, Firebase Firestore, background geolocation</strong> — the app provides real-time alerts, ICE detection on your travel route, and a community reporting system where every user contributes to protecting others.</p>
+        <div class="app-features">
+          <div class="feature-item"><div class="feature-icon">🗺️</div><div class="feature-text"><strong data-i18n="feat1_title">Real-time map</strong><span data-i18n="feat1_desc">Visualize community-reported operations on an interactive map with multiple views: satellite, standard and dark mode.</span></div></div>
+          <div class="feature-item"><div class="feature-icon">🔔</div><div class="feature-text"><strong data-i18n="feat2_title">150-meter alerts</strong><span data-i18n="feat2_desc">Instant notifications when an ICE operation is within 150 meters of your location, even when the app is closed.</span></div></div>
+          <div class="feature-item"><div class="feature-icon">🛣️</div><div class="feature-text"><strong data-i18n="feat3_title">Route detection</strong><span data-i18n="feat3_desc">Trace your route and the app automatically detects ICE operations along your path, alerting you with a red route.</span></div></div>
+          <div class="feature-item"><div class="feature-icon">👥</div><div class="feature-text"><strong data-i18n="feat4_title">Community feedback</strong><span data-i18n="feat4_desc">Any user can report and remove operations. Reports automatically expire after 12 hours.</span></div></div>
+          <div class="feature-item"><div class="feature-icon">🌐</div><div class="feature-text"><strong data-i18n="feat5_title">Bilingual ES / EN</strong><span data-i18n="feat5_desc">Fully available in Spanish and English with instant language switching inside the app.</span></div></div>
+        </div>
+      </div>
+      <div class="app-icon-showcase reveal">
+        <div class="app-icon-wrapper"><div class="app-glow"></div><img src="images/icon_app.png" alt="recognICE App"/></div>
+      </div>
+    </div>
+    <div class="screenshots-section reveal">
+      <div class="screenshots-title">
+        <h3 data-i18n="screenshots_title">Screenshots</h3>
+        <p data-i18n="screenshots_sub">This is how recognICE looks on your device</p>
+      </div>
+      <div class="screenshots-scroll">
+        <div class="screenshot-card"><img src="images/screenshot_1.jpg" alt="1"/></div>
+        <div class="screenshot-card"><img src="images/screenshot_2.jpg" alt="2"/></div>
+        <div class="screenshot-card"><img src="images/screenshot_3.jpg" alt="3"/></div>
+        <div class="screenshot-card"><img src="images/screenshot_4.jpg" alt="4"/></div>
+      </div>
+      <div class="screenshots-row2">
+        <div class="screenshot-card"><img src="images/screenshot_5.jpg" alt="5"/></div>
+        <div class="screenshot-card"><img src="images/screenshot_6.jpg" alt="6"/></div>
+        <div class="screenshot-card"><img src="images/screenshot_7.jpg" alt="7"/></div>
+        <div class="screenshot-card"><img src="images/screenshot_8.jpg" alt="8"/></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORE -->
+<div class="store-section">
+  <div class="store-content">
+    <h3 data-i18n="store_title">Now available on</h3>
+    <p data-i18n="store_sub">Download recognICE for free on your app store</p>
+    <div class="store-badges">
+      <a href="#" class="store-badge"><div class="store-badge-icon">🍎</div><div class="store-badge-text"><small data-i18n="store_available">Download on</small><strong>App Store</strong></div></a>
+      <a href="#" class="store-badge"><div class="store-badge-icon">▶️</div><div class="store-badge-text"><small data-i18n="store_available">Download on</small><strong>Google Play</strong></div></a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="section-label" data-i18n="contact_label">Contact us</div>
+        <h3><span data-i18n="contact_title1">Do you have a</span> <em style="font-style:normal;background:linear-gradient(135deg,#1B4FD8,#38BDF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" data-i18n="contact_title2">question?</em></h3>
+        <p data-i18n="contact_p">We're here to listen. Whether you have a question about recognICE, want to report a problem, or are interested in collaborating with Y&C Tech — write to us and we'll get back to you shortly.</p>
+        <div class="contact-detail"><div class="contact-detail-icon">📧</div><div class="contact-detail-text"><small data-i18n="contact_email_label">Corporate email</small><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="84fde5e3f1e5f6aaf0e1e7eceaebe8ebe3fdc4e3e9e5ede8aae7ebe9">[email&#160;protected]</a></span></div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">📍</div><div class="contact-detail-text"><small data-i18n="contact_addr_label">Physical office</small><span>599 Cedar Lane, Ap 1A<br/>Teaneck, NJ 07666, USA</span></div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">🕐</div><div class="contact-detail-text"><small data-i18n="contact_time_label">Response time</small><span data-i18n="contact_time_val">Less than 24 business hours</span></div></div>
+      </div>
+      <div class="reveal">
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="form-group"><label data-i18n="form_email">Your email address *</label><input type="email" id="fromEmail" placeholder="youremail@example.com" data-i18n-ph="form_email_ph" required/></div>
+            <div class="form-group">
+              <label data-i18n="form_subject">Subject *</label>
+              <select id="subject" required>
+                <option value="" data-i18n="form_select">Select a subject...</option>
+                <option data-i18n="form_opt1">Inquiry about recognICE</option>
+                <option data-i18n="form_opt2">Technical issue report</option>
+                <option data-i18n="form_opt3">Collaboration or partnership</option>
+                <option data-i18n="form_opt4">Press and media</option>
+                <option data-i18n="form_opt5">Other</option>
+              </select>
+            </div>
+            <div class="form-group"><label data-i18n="form_name">Your name</label><input type="text" id="senderName" placeholder="Full name" data-i18n-ph="form_name_ph"/></div>
+            <div class="form-group"><label data-i18n="form_message">Message *</label><textarea id="message" placeholder="Write your message here..." data-i18n-ph="form_msg_ph" required></textarea></div>
+            <button type="submit" class="form-submit" id="submitBtn" data-i18n="form_send">Send message</button>
+            <div class="form-message" id="formMessage"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo"><img src="images/logo_empresa.png" alt="Y&C Tech"/></div>
+    <div class="footer-text">© 2026 Y&C Tech Global Development. <span data-i18n="footer_rights">All rights reserved.</span><br/><a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a> · <a href="privacy.html" data-i18n="footer_terms">Terms of Use</a></div>
+    <ul class="footer-links">
+      <li><a href="#company" data-i18n="nav_company">Company</a></li>
+      <li><a href="#app">recognICE</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const T = {
+  en: {
+    nav_company:'Company',nav_team:'Team',nav_app:'recognICE',nav_contact:'Contact',
+    hero_line1:'Technology that',hero_line2:'Transforms',
+    hero_sub:'We develop world-class digital solutions that connect communities, protect people and define the future of mobile technology.',
+    hero_cta1:'See recognICE',hero_cta2:'Contact Us',
+    about_label:'Who we are',about_title1:'High-impact',about_title2:'Engineering',
+    about_p1:'<strong>Y&C Tech Global Development</strong> is a software development company founded with a clear mission: to create technology that solves real problems for real communities. We operate from <strong>Teaneck, New Jersey</strong>, with a global vision and precision execution.',
+    about_p2:'Our team combines years of experience in software engineering, product design and cloud systems architecture. From high-performance mobile applications to real-time data platforms, we build with the most advanced technologies: <strong>Flutter, Firebase, cloud-native infrastructure</strong> and more.',
+    about_p3:"At Y&C Tech we don't just write code — we design experiences, solve human problems and build products that scale. Our commitment to quality and innovation has positioned us as a benchmark in mobile application development for the North American market.",
+    stat1:'Native cross-platform development',stat2:'Live data architecture',stat3:'Android — full coverage',stat4:'Background monitoring & alerts',
+    sede_label:'Physical headquarters:',sede_addr:'599 Cedar Lane, Ap 1A — Teaneck, NJ 07666, United States',
+    team_label:'Our team',team_title1:'The minds',team_title2:'behind the technology',
+    team_sub:'Leaders with vision, technical expertise and a passion for building products that matter.',
+    ivan_role:'Co-Founder & CEO',
+    ivan_bio:'Software developer with hands-on experience in Flutter, Firebase, cross-platform mobile architectures and general software development. Leads product development at Y&C Tech from conception to deployment, with an obsessive focus on user experience, code quality and building digital solutions that scale.',
+    mauricio_role:'Co-Founder & COO',
+    mauricio_bio:'Business strategist with solid experience in operations management, business development and organizational administration. Responsible for the strategic direction, commercial partnerships and sustainable growth of Y&C Tech in the North American market.',
+    app_label:'Our flagship product',app_title1:'Meet',
+    app_p1:'<strong style="color:#E2E8F0;">recognICE</strong> is the first real-time community alert mobile app designed to inform communities about the presence of ICE (Immigration and Customs Enforcement) operations in their area.',
+    app_p2:'Built with cutting-edge technology — <strong style="color:#E2E8F0;">Flutter, Firebase Firestore, background geolocation</strong> — the app provides real-time alerts, ICE detection on your travel route, and a community reporting system where every user contributes to protecting others.',
+    feat1_title:'Real-time map',feat1_desc:'Visualize community-reported operations on an interactive map with multiple views: satellite, standard and dark mode.',
+    feat2_title:'150-meter alerts',feat2_desc:'Instant notifications when an ICE operation is within 150 meters of your location, even when the app is closed.',
+    feat3_title:'Route detection',feat3_desc:'Trace your route and the app automatically detects ICE operations along your path, alerting you with a red route.',
+    feat4_title:'Community feedback',feat4_desc:'Any user can report and remove operations. Reports automatically expire after 12 hours.',
+    feat5_title:'Bilingual ES / EN',feat5_desc:'Fully available in Spanish and English with instant language switching inside the app.',
+    screenshots_title:'Screenshots',screenshots_sub:'This is how recognICE looks on your device',
+    store_title:'Now available on',store_sub:'Download recognICE for free on your app store',store_available:'Download on',
+    contact_label:'Contact us',contact_title1:'Do you have a',contact_title2:'question?',
+    contact_p:"We're here to listen. Whether you have a question about recognICE, want to report a problem, or are interested in collaborating with Y&C Tech — write to us and we'll get back to you shortly.",
+    contact_email_label:'Corporate email',contact_addr_label:'Physical office',contact_time_label:'Response time',contact_time_val:'Less than 24 business hours',
+    form_email:'Your email address *',form_email_ph:'youremail@example.com',
+    form_subject:'Subject *',form_select:'Select a subject...',
+    form_opt1:'Inquiry about recognICE',form_opt2:'Technical issue report',form_opt3:'Collaboration or partnership',form_opt4:'Press and media',form_opt5:'Other',
+    form_name:'Your name',form_name_ph:'Full name',
+    form_message:'Message *',form_msg_ph:'Write your message here...',
+    form_send:'Send message',form_sending:'Sending...',form_success:'✓ Message sent successfully. We will get back to you soon.',
+    footer_rights:'All rights reserved.',footer_privacy:'Privacy Policy',footer_terms:'Terms of Use'
+  },
+  es: {
+    nav_company:'Empresa',nav_team:'Equipo',nav_app:'recognICE',nav_contact:'Contacto',
+    hero_line1:'Tecnología que',hero_line2:'Transforma',
+    hero_sub:'Desarrollamos soluciones digitales de clase mundial que conectan comunidades, protegen personas y definen el futuro de la tecnología móvil.',
+    hero_cta1:'Ver recognICE',hero_cta2:'Contáctanos',
+    about_label:'Quiénes somos',about_title1:'Ingeniería de',about_title2:'alto impacto',
+    about_p1:'<strong>Y&C Tech Global Development</strong> es una empresa de desarrollo de software fundada con una misión clara: crear tecnología que resuelva problemas reales para comunidades reales. Operamos desde <strong>Teaneck, New Jersey</strong>, con visión global y ejecución de precisión.',
+    about_p2:'Nuestro equipo combina años de experiencia en ingeniería de software, diseño de producto y arquitectura de sistemas en la nube. Desde aplicaciones móviles de alto rendimiento hasta plataformas de datos en tiempo real, construimos con las tecnologías más avanzadas: <strong>Flutter, Firebase, cloud-native infrastructure</strong> y más.',
+    about_p3:'En Y&C Tech no solo escribimos código — diseñamos experiencias, resolvemos problemas humanos y construimos productos que escalan. Nuestro compromiso con la calidad y la innovación nos ha posicionado como un referente en el desarrollo de aplicaciones móviles para el mercado norteamericano.',
+    stat1:'Desarrollo nativo multiplataforma',stat2:'Arquitectura de datos en vivo',stat3:'Android — cobertura total',stat4:'Monitoreo y alertas en background',
+    sede_label:'Sede física:',sede_addr:'599 Cedar Lane, Ap 1A — Teaneck, NJ 07666, United States',
+    team_label:'Nuestro equipo',team_title1:'Las mentes',team_title2:'detrás de la tecnología',
+    team_sub:'Líderes con visión, experiencia técnica y pasión por construir productos que importan.',
+    ivan_role:'Co-Fundador & CEO',
+    ivan_bio:'Desarrollador de software con experiencia práctica en Flutter, Firebase, arquitecturas móviles multiplataforma y desarrollo de sistemas en general. Lidera el desarrollo de productos de Y&C Tech desde la concepción hasta el despliegue, con un enfoque obsesivo en la experiencia de usuario, la calidad del código y la construcción de soluciones digitales que escalan.',
+    mauricio_role:'Co-Fundador & COO',
+    mauricio_bio:'Estratega empresarial con sólida experiencia en gestión de operaciones, desarrollo de negocios y administración organizacional. Responsable de la dirección estratégica, las alianzas comerciales y el crecimiento sostenible de Y&C Tech en el mercado norteamericano.',
+    app_label:'Nuestro producto flagship',app_title1:'Conoce',
+    app_p1:'<strong style="color:#E2E8F0;">recognICE</strong> es la primera aplicación móvil de alerta comunitaria en tiempo real diseñada para informar a las comunidades sobre la presencia de operativos de ICE (Immigration and Customs Enforcement) en su área.',
+    app_p2:'Desarrollada con tecnología de punta — <strong style="color:#E2E8F0;">Flutter, Firebase Firestore, geolocalización en background</strong> — la app ofrece alertas en tiempo real, detección de operativos en tu ruta de viaje, y un sistema de reportes comunitario donde cada usuario contribuye a proteger a los demás.',
+    feat1_title:'Mapa en tiempo real',feat1_desc:'Visualiza operativos reportados por la comunidad en un mapa interactivo con múltiples vistas: satelital, estándar y nocturna.',
+    feat2_title:'Alertas a 150 metros',feat2_desc:'Notificaciones instantáneas cuando hay un operativo ICE a menos de 150 metros de tu ubicación, incluso con la app cerrada.',
+    feat3_title:'Detección en tu ruta',feat3_desc:'Traza tu ruta y la app detecta automáticamente si hay operativos ICE en tu camino, alertándote con una ruta en rojo.',
+    feat4_title:'Retroalimentación comunitaria',feat4_desc:'Cualquier usuario puede reportar y eliminar operativos. Los reportes expiran automáticamente en 12 horas.',
+    feat5_title:'Bilingüe ES / EN',feat5_desc:'Disponible completamente en español e inglés con cambio de idioma instantáneo dentro de la app.',
+    screenshots_title:'Capturas de pantalla',screenshots_sub:'Así se ve recognICE en tu dispositivo',
+    store_title:'Disponible ahora en',store_sub:'Descarga recognICE gratis en tu tienda de aplicaciones',store_available:'Disponible en',
+    contact_label:'Contáctanos',contact_title1:'¿Tienes alguna',contact_title2:'pregunta?',
+    contact_p:'Estamos aquí para escucharte. Ya sea que tengas una consulta sobre recognICE, quieras reportar un problema, o estés interesado en colaborar con Y&C Tech — escríbenos y te respondemos a la brevedad.',
+    contact_email_label:'Email corporativo',contact_addr_label:'Sede física',contact_time_label:'Tiempo de respuesta',contact_time_val:'Menos de 24 horas hábiles',
+    form_email:'Tu correo electrónico *',form_email_ph:'tucorreo@ejemplo.com',
+    form_subject:'Asunto *',form_select:'Selecciona un asunto...',
+    form_opt1:'Consulta sobre recognICE',form_opt2:'Reporte de problema técnico',form_opt3:'Colaboración o alianza',form_opt4:'Prensa y medios',form_opt5:'Otro',
+    form_name:'Tu nombre',form_name_ph:'Nombre completo',
+    form_message:'Mensaje *',form_msg_ph:'Escribe tu mensaje aquí...',
+    form_send:'Enviar mensaje',form_sending:'Enviando...',form_success:'✓ Mensaje enviado correctamente. Te responderemos pronto.',
+    footer_rights:'Todos los derechos reservados.',footer_privacy:'Política de Privacidad',footer_terms:'Términos de Uso'
+  }
+};
+
+let lang = 'en';
+
+function setLang(l) {
+  lang = l;
+  document.documentElement.lang = l;
+  const t = T[l];
+  // Botones nav
+  document.getElementById('btn-en').classList.toggle('active', l==='en');
+  document.getElementById('btn-es').classList.toggle('active', l==='es');
+  document.getElementById('mbtn-en').classList.toggle('active', l==='en');
+  document.getElementById('mbtn-es').classList.toggle('active', l==='es');
+  // innerHTML
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+  // placeholders
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const k = el.getAttribute('data-i18n-ph');
+    if (t[k] !== undefined) el.placeholder = t[k];
+  });
+  // select options
+  document.querySelectorAll('select option[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (t[k] !== undefined) el.textContent = t[k];
+  });
+  // submit button
+  const sb = document.getElementById('submitBtn');
+  if (sb && !sb.disabled) sb.textContent = t.form_send;
+}
+
+// NAV scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+// Hamburger
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+// Scroll reveal
+new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80); });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' })
+.observe && document.querySelectorAll('.reveal').forEach(el =>
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 }).observe(el)
+);
+
+// Form
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const t = T[lang];
+  const fromEmail = document.getElementById('fromEmail').value.trim();
+  const subject = document.getElementById('subject').value;
+  const senderName = document.getElementById('senderName').value.trim();
+  const message = document.getElementById('message').value.trim();
+  if (!fromEmail || !subject || !message) return;
+  const sb = document.getElementById('submitBtn');
+  const fm = document.getElementById('formMessage');
+  sb.disabled = true; sb.textContent = t.form_sending;
+  fm.className = 'form-message'; fm.style.display = 'none';
+  const mailto = `mailto:yaguar.technology@gmail.com?subject=${encodeURIComponent(subject+(senderName?' — '+senderName:''))}&body=${encodeURIComponent('From: '+fromEmail+(senderName?'\nName: '+senderName:'')+'\n\n'+message)}`;
+  window.location.href = mailto;
+  setTimeout(() => {
+    fm.className = 'form-message success';
+    fm.textContent = t.form_success;
+    sb.disabled = false;
+    sb.textContent = t.form_send;
+    document.getElementById('contactForm').reset();
+  }, 500);
+});
+</script>
+</body>
+</html>
