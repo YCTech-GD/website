@@ -20,8 +20,6 @@ body{font-family:'Exo 2',sans-serif;background:var(--yc-dark);color:var(--yc-lig
 ::-webkit-scrollbar{width:6px;}
 ::-webkit-scrollbar-track{background:var(--yc-dark);}
 ::-webkit-scrollbar-thumb{background:var(--yc-blue);border-radius:3px;}
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(6,13,26,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(56,189,248,0.1);transition:all 0.3s var(--transition);}
 nav.scrolled{padding:0.6rem 3rem;background:rgba(6,13,26,0.97);}
 .nav-logo img{height:44px;object-fit:contain;}
@@ -31,27 +29,19 @@ nav.scrolled{padding:0.6rem 3rem;background:rgba(6,13,26,0.97);}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--yc-cyan);transition:width 0.3s var(--transition);}
 .nav-links a:hover{color:var(--yc-cyan);}
 .nav-links a:hover::after{width:100%;}
-
-/* Lang toggle */
 .lang-toggle{display:flex;align-items:center;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);border-radius:100px;overflow:hidden;flex-shrink:0;}
 .lang-btn{font-family:'Space Mono',monospace;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;padding:0.4rem 0.9rem;border:none;background:transparent;color:var(--yc-silver);cursor:pointer;transition:all 0.2s;text-transform:uppercase;}
 .lang-btn.active{background:var(--yc-blue);color:white;}
-
-/* Hamburger */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
 .hamburger span{display:block;width:24px;height:2px;background:var(--yc-silver);border-radius:2px;transition:all 0.3s var(--transition);}
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
 .hamburger.open span:nth-child(2){opacity:0;}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
-
-/* Mobile menu */
 .mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;z-index:999;background:rgba(6,13,26,0.98);backdrop-filter:blur(20px);border-bottom:1px solid rgba(56,189,248,0.1);padding:1.5rem 2rem;flex-direction:column;gap:1.2rem;}
 .mobile-menu.open{display:flex;}
 .mobile-menu a{font-family:'Orbitron',monospace;font-size:0.75rem;color:var(--yc-silver);text-decoration:none;letter-spacing:0.15em;text-transform:uppercase;padding:0.5rem 0;border-bottom:1px solid rgba(56,189,248,0.06);transition:color 0.3s;}
 .mobile-menu a:hover{color:var(--yc-cyan);}
 .mobile-lang{display:flex;gap:0.5rem;padding-top:0.5rem;}
-
-/* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:var(--yc-dark);}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(27,79,216,0.18) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 50%,rgba(56,189,248,0.06) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(27,79,216,0.08) 0%,transparent 60%);}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(27,79,216,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(27,79,216,0.08) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);}
@@ -67,16 +57,12 @@ nav.scrolled{padding:0.6rem 3rem;background:rgba(6,13,26,0.97);}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(27,79,216,0.6);}
 .btn-outline{display:inline-flex;align-items:center;gap:0.6rem;background:transparent;color:var(--yc-cyan);padding:0.85rem 2rem;border-radius:6px;font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-decoration:none;text-transform:uppercase;border:1px solid rgba(56,189,248,0.4);cursor:pointer;transition:all 0.3s var(--transition);}
 .btn-outline:hover{background:rgba(56,189,248,0.08);border-color:var(--yc-cyan);transform:translateY(-2px);}
-
-/* SECTIONS */
 section{padding:7rem 2rem;}
 .container{max-width:1200px;margin:0 auto;}
 .section-label{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.25em;color:var(--yc-cyan);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:1rem;}
 .section-label::before{content:'';width:30px;height:1px;background:var(--yc-cyan);}
 .section-title{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,4vw,3rem);font-weight:700;line-height:1.15;margin-bottom:1.5rem;color:var(--yc-white);}
 .section-title em{font-style:normal;background:linear-gradient(135deg,#1B4FD8,#38BDF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-
-/* ABOUT */
 .about{background:linear-gradient(180deg,var(--yc-dark) 0%,var(--yc-navy) 100%);position:relative;overflow:hidden;}
 .about::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(27,79,216,0.06) 0%,transparent 70%);}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
@@ -92,8 +78,6 @@ section{padding:7rem 2rem;}
 .logo-showcase img{width:100%;border-radius:20px;box-shadow:0 0 0 1px rgba(56,189,248,0.15),0 30px 80px rgba(0,0,0,0.5),0 0 60px rgba(27,79,216,0.15);}
 .logo-ring{position:absolute;inset:-20px;border-radius:28px;border:1px solid rgba(56,189,248,0.12);animation:ringPulse 4s ease-in-out infinite;}
 .logo-ring-2{position:absolute;inset:-40px;border-radius:36px;border:1px solid rgba(56,189,248,0.06);animation:ringPulse 4s ease-in-out infinite 1s;}
-
-/* TEAM */
 .team{background:var(--yc-navy);}
 .team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:700px;margin:0 auto;}
 .team-card{background:rgba(255,255,255,0.03);border:1px solid rgba(56,189,248,0.1);border-radius:16px;padding:2.5rem 2rem;text-align:center;transition:all 0.4s var(--transition);position:relative;overflow:hidden;}
@@ -106,15 +90,11 @@ section{padding:7rem 2rem;}
 .team-name{font-family:'Orbitron',monospace;font-size:0.95rem;font-weight:700;color:var(--yc-white);margin-bottom:0.4rem;letter-spacing:0.05em;}
 .team-role{font-size:0.78rem;color:var(--yc-cyan);font-weight:300;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;}
 .team-bio{font-size:0.85rem;color:var(--yc-silver);line-height:1.6;font-weight:300;}
-
-/* SEDE */
 .sede-bar{background:linear-gradient(135deg,rgba(27,79,216,0.15),rgba(56,189,248,0.05));border-top:1px solid rgba(56,189,248,0.1);border-bottom:1px solid rgba(56,189,248,0.1);padding:2rem;text-align:center;}
 .sede-content{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;}
 .sede-icon{font-size:1.5rem;}
 .sede-text{font-family:'Space Mono',monospace;font-size:0.8rem;color:var(--yc-silver);letter-spacing:0.05em;}
 .sede-text strong{color:var(--yc-cyan);}
-
-/* APP SECTION */
 .app-section{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--yc-navy) 0%,#120810 30%,var(--app-mid) 60%,var(--app-dark) 100%);padding:7rem 2rem;}
 .app-section::before{content:'';position:absolute;top:0;left:0;right:0;height:300px;background:linear-gradient(180deg,var(--yc-navy),transparent);}
 .app-section::after{content:'';position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(204,26,0,0.08) 0%,transparent 70%);pointer-events:none;}
@@ -133,8 +113,6 @@ section{padding:7rem 2rem;}
 .app-icon-wrapper{position:relative;width:260px;height:260px;}
 .app-icon-wrapper img{width:100%;height:100%;object-fit:contain;border-radius:40px;filter:drop-shadow(0 0 60px rgba(204,26,0,0.4));animation:float 6s ease-in-out infinite;}
 .app-glow{position:absolute;inset:-30px;border-radius:60px;background:radial-gradient(circle,rgba(204,26,0,0.15) 0%,transparent 70%);animation:glowPulse 3s ease-in-out infinite;}
-
-/* SCREENSHOTS */
 .screenshots-section{position:relative;z-index:2;}
 .screenshots-title{text-align:center;margin-bottom:3rem;}
 .screenshots-title h3{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:700;color:var(--yc-white);margin-bottom:0.5rem;}
@@ -145,8 +123,6 @@ section{padding:7rem 2rem;}
 .screenshot-card:hover{border-color:rgba(255,68,34,0.4);transform:translateY(-8px);box-shadow:0 20px 60px rgba(204,26,0,0.25);}
 .screenshot-card:hover img{transform:scale(1.03);}
 .screenshots-row2{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:1.2rem;}
-
-/* STORE */
 .store-section{background:var(--app-dark);padding:5rem 2rem;text-align:center;position:relative;}
 .store-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(204,26,0,0.05) 0%,transparent 70%);}
 .store-content{position:relative;z-index:2;}
@@ -159,8 +135,6 @@ section{padding:7rem 2rem;}
 .store-badge-text{text-align:left;}
 .store-badge-text small{display:block;font-size:0.65rem;color:#94A3B8;letter-spacing:0.05em;}
 .store-badge-text strong{display:block;font-family:'Orbitron',monospace;font-size:0.85rem;font-weight:700;}
-
-/* CONTACT */
 .contact{background:linear-gradient(180deg,var(--app-dark) 0%,var(--yc-dark) 100%);padding:7rem 2rem;}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
 .contact-info h3{font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:700;color:var(--yc-white);margin-bottom:1rem;}
@@ -181,8 +155,7 @@ section{padding:7rem 2rem;}
 .form-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
 .form-message{margin-top:1rem;padding:0.8rem 1rem;border-radius:8px;font-size:0.85rem;display:none;}
 .form-message.success{display:block;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#86EFAC;}
-
-/* FOOTER */
+.form-message.error{display:block;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#FCA5A5;}
 footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:3rem 2rem;}
 .footer-content{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
 .footer-logo img{height:36px;object-fit:contain;}
@@ -191,8 +164,6 @@ footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:3re
 .footer-links{display:flex;gap:2rem;list-style:none;}
 .footer-links a{font-size:0.75rem;color:#475569;text-decoration:none;font-family:'Space Mono',monospace;letter-spacing:0.05em;transition:color 0.3s;}
 .footer-links a:hover{color:var(--yc-cyan);}
-
-/* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
 @keyframes shimmer{0%{background-position:0% center;}100%{background-position:200% center;}}
@@ -202,8 +173,6 @@ footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:3re
 @keyframes glowPulse{0%,100%{opacity:0.6;transform:scale(1);}50%{opacity:1;transform:scale(1.05);}}
 .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s var(--transition),transform 0.8s var(--transition);}
 .reveal.visible{opacity:1;transform:translateY(0);}
-
-/* RESPONSIVE */
 @media(max-width:900px){
   nav{padding:1rem 1.5rem;}
   .nav-links{display:none;}
@@ -257,7 +226,6 @@ footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:3re
   </div>
 </div>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div><div class="hero-grid"></div>
   <div class="hero-content">
@@ -277,7 +245,6 @@ footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:3re
   </div>
 </section>
 
-<!-- ABOUT -->
 <section class="about" id="company">
   <div class="container">
     <div class="about-grid">
@@ -304,7 +271,6 @@ footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:3re
   </div>
 </section>
 
-<!-- SEDE -->
 <div class="sede-bar">
   <div class="sede-content">
     <div class="sede-icon">📍</div>
@@ -312,7 +278,6 @@ footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:3re
   </div>
 </div>
 
-<!-- TEAM -->
 <section class="team" id="team">
   <div class="container">
     <div style="text-align:center;margin-bottom:3.5rem;" class="reveal">
@@ -337,7 +302,6 @@ footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:3re
   </div>
 </section>
 
-<!-- APP -->
 <section class="app-section" id="app">
   <div class="container">
     <div class="app-hero">
@@ -379,7 +343,6 @@ footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:3re
   </div>
 </section>
 
-<!-- STORE -->
 <div class="store-section">
   <div class="store-content">
     <h3 data-i18n="store_title">Now available on</h3>
@@ -391,7 +354,6 @@ footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:3re
   </div>
 </div>
 
-<!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-grid">
@@ -399,7 +361,7 @@ footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:3re
         <div class="section-label" data-i18n="contact_label">Contact us</div>
         <h3><span data-i18n="contact_title1">Do you have a</span> <em style="font-style:normal;background:linear-gradient(135deg,#1B4FD8,#38BDF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" data-i18n="contact_title2">question?</em></h3>
         <p data-i18n="contact_p">We're here to listen. Whether you have a question about recognICE, want to report a problem, or are interested in collaborating with Y&C Tech — write to us and we'll get back to you shortly.</p>
-        <div class="contact-detail"><div class="contact-detail-icon">📧</div><div class="contact-detail-text"><small data-i18n="contact_email_label">Corporate email</small><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="84fde5e3f1e5f6aaf0e1e7eceaebe8ebe3fdc4e3e9e5ede8aae7ebe9">[email&#160;protected]</a></span></div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">📧</div><div class="contact-detail-text"><small data-i18n="contact_email_label">Corporate email</small><span>yaguar.technology@gmail.com</span></div></div>
         <div class="contact-detail"><div class="contact-detail-icon">📍</div><div class="contact-detail-text"><small data-i18n="contact_addr_label">Physical office</small><span>599 Cedar Lane, Ap 1A<br/>Teaneck, NJ 07666, USA</span></div></div>
         <div class="contact-detail"><div class="contact-detail-icon">🕐</div><div class="contact-detail-text"><small data-i18n="contact_time_label">Response time</small><span data-i18n="contact_time_val">Less than 24 business hours</span></div></div>
       </div>
@@ -429,7 +391,6 @@ footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:3re
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-content">
     <div class="footer-logo"><img src="images/logo_empresa.png" alt="Y&C Tech"/></div>
@@ -442,7 +403,7 @@ footer{background:#030508;border-top:1px solid rgba(56,189,248,0.08);padding:3re
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const T = {
   en: {
     nav_company:'Company',nav_team:'Team',nav_app:'recognICE',nav_contact:'Contact',
@@ -528,36 +489,29 @@ function setLang(l) {
   lang = l;
   document.documentElement.lang = l;
   const t = T[l];
-  // Botones nav
   document.getElementById('btn-en').classList.toggle('active', l==='en');
   document.getElementById('btn-es').classList.toggle('active', l==='es');
   document.getElementById('mbtn-en').classList.toggle('active', l==='en');
   document.getElementById('mbtn-es').classList.toggle('active', l==='es');
-  // innerHTML
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const k = el.getAttribute('data-i18n');
     if (t[k] !== undefined) el.innerHTML = t[k];
   });
-  // placeholders
   document.querySelectorAll('[data-i18n-ph]').forEach(el => {
     const k = el.getAttribute('data-i18n-ph');
     if (t[k] !== undefined) el.placeholder = t[k];
   });
-  // select options
   document.querySelectorAll('select option[data-i18n]').forEach(el => {
     const k = el.getAttribute('data-i18n');
     if (t[k] !== undefined) el.textContent = t[k];
   });
-  // submit button
   const sb = document.getElementById('submitBtn');
   if (sb && !sb.disabled) sb.textContent = t.form_send;
 }
 
-// NAV scroll
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
 
-// Hamburger
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
   document.getElementById('hamburger').classList.toggle('open');
@@ -567,17 +521,12 @@ function closeMenu() {
   document.getElementById('hamburger').classList.remove('open');
 }
 
-// Scroll reveal
-new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80); });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' })
-.observe && document.querySelectorAll('.reveal').forEach(el =>
+document.querySelectorAll('.reveal').forEach(el =>
   new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 }).observe(el)
 );
 
-// Form
 document.getElementById('contactForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const t = T[lang];
@@ -588,17 +537,30 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
   if (!fromEmail || !subject || !message) return;
   const sb = document.getElementById('submitBtn');
   const fm = document.getElementById('formMessage');
-  sb.disabled = true; sb.textContent = t.form_sending;
-  fm.className = 'form-message'; fm.style.display = 'none';
-  const mailto = `mailto:yaguar.technology@gmail.com?subject=${encodeURIComponent(subject+(senderName?' — '+senderName:''))}&body=${encodeURIComponent('From: '+fromEmail+(senderName?'\nName: '+senderName:'')+'\n\n'+message)}`;
-  window.location.href = mailto;
-  setTimeout(() => {
-    fm.className = 'form-message success';
-    fm.textContent = t.form_success;
-    sb.disabled = false;
-    sb.textContent = t.form_send;
-    document.getElementById('contactForm').reset();
-  }, 500);
+  sb.disabled = true;
+  sb.textContent = t.form_sending;
+  fm.style.display = 'none';
+  try {
+    const res = await fetch('https://formspree.io/f/mvzwqqqwq', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email: fromEmail, name: senderName, subject: subject, message: message })
+    });
+    if (res.ok) {
+      fm.className = 'form-message success';
+      fm.textContent = t.form_success;
+      document.getElementById('contactForm').reset();
+    } else {
+      fm.className = 'form-message error';
+      fm.textContent = 'Error sending message. Please try again.';
+    }
+  } catch(err) {
+    fm.className = 'form-message error';
+    fm.textContent = 'Connection error. Please try again.';
+  }
+  fm.style.display = 'block';
+  sb.disabled = false;
+  sb.textContent = t.form_send;
 });
 </script>
 </body>
