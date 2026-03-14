@@ -536,7 +536,7 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
   sb.textContent = t.form_sending;
   fm.style.display = 'none';
   try {
-    const res = await fetch('https://formspree.io/f/mvzwqqqwq', {
+    const res = await fetch('https://formspree.io/f/mvzwqqwq', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({ email: fromEmail, name: senderName, subject: subject, message: message })
